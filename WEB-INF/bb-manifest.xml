@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<manifest>
+	<plugin>
+		<name value="Class Photo Rosters"/>
+		<description value="Photo Rosters for CMU. Based on Class Rosters from Northwood University"/>
+		<handle value="photoroster"/>
+		<version value="1.1.1"/>
+		<requires>
+			<bbversion value="9.1"/>
+		</requires>
+		<vendor>
+			<id value="cmu"/>
+			<name value="Central Michigan University"/>
+			<url value="http://www.cmich.edu"/>
+			<description value=""/>
+		</vendor>
+		<http-actions>
+			<remove value="admin/remove.jsp"/>
+		</http-actions>
+		<module-defs>
+			<module-type ext-ref="nusearch" title="Photo Search" uicreatable="true">
+      			<jsp-dir>module</jsp-dir>
+      			<jsp>
+      				<view>view.jsp</view>
+      			</jsp>
+      		</module-type>
+			<module-type ext-ref="nuclasses" title="Course Rosters" uicreatable="true">
+      			<jsp-dir>module</jsp-dir>
+      			<jsp>
+      				<view>courses.jsp</view>
+      			</jsp>
+      		</module-type>
+      		<module type="nusearch" isadmin="false" useraddable="false" isdeletable="true" isdetachable="true" title="Photo Search">
+				<description>Photo Search Module</description>
+				<ExtraInfo/>
+				<module-groups>
+					<module-group id="Everyone" />
+				</module-groups>
+			</module>
+			<module type="nuclasses" isadmin="false" useraddable="false" isdeletable="true" isdetachable="true" title="Course Rosters">
+				<description>Photo Roster Module</description>
+				<ExtraInfo/>
+				<module-groups>
+					<module-group id="Everyone" />
+				</module-groups>
+			</module>
+		</module-defs>
+		<application-defs>
+      		<application handle="classrosters" type="course" use-ssl="false" name="Class Rosters" can-allow-guest="false">
+				<description lang="en-US">Student Pictures</description>
+				<links>
+					<link>
+						<type value="course_tool"/>
+						<name value="Photo Rosters"/>
+						<url value="module/studentroster.jsp"/>
+						<description value="Student Pictures"/>
+					</link>
+				</links>
+			</application>
+		</application-defs>
+		<permissions>
+			<permission type="attribute" name="user.authinfo" actions="get" />
+			<permission type="attribute" name="user.personalinfo" actions="get" />
+			<permission type="attribute" name="*" actions="get"/>
+			<permission type="persist" name="*" actions="persist"/>
+			<permission type="socket" name="*" actions="connect"/>
+			<permission type="runtime" name="java.io.FilePermission" actions="read"/>
+		</permissions>
+	</plugin>
+</manifest>
